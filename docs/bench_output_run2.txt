@@ -1,0 +1,26 @@
+running benchmarks (this takes a little while)...
+Machine: AMD64 Family 25 Model 124 Stepping 0, AuthenticAMD | 12 logical CPUs | Windows-11-10.0.26200-SP0 | CPython 3.13.5
+Messages per run: {'threads': 20000, 'fsync_always': 1000, 'network': 3000}
+
+### Thread scaling (in-process, fsync=batch)
+| threads | send msg/s | send p50/p95/p99 ms | recv+ack msg/s | recv+ack p50/p95/p99 ms |
+|---|---:|---|---:|---|
+| 1 | 20,888 | 0.023 / 0.056 / 1.139 | 10,764 | 0.039 / 0.114 / 1.257 |
+| 4 | 13,317 | 0.048 / 0.548 / 7.151 | 6,882 | 0.096 / 1.271 / 14.338 |
+| 16 | 11,513 | 0.051 / 1.444 / 36.454 | 6,530 | 0.096 / 1.450 / 75.654 |
+
+### fsync policy cost (in-process, 1 thread)
+| policy | send msg/s | send p50/p95/p99 ms | recv+ack msg/s | recv+ack p50/p95/p99 ms |
+|---|---:|---|---:|---|
+| memory (no log) | 176,378 | 0.005 / 0.007 / 0.012 | 110,046 | 0.008 / 0.012 / 0.015 |
+| none | 28,783 | 0.030 / 0.048 / 0.090 | 15,327 | 0.058 / 0.094 / 0.165 |
+| batch | 16,930 | 0.032 / 0.079 / 1.237 | 5,524 | 0.086 / 0.398 / 1.685 |
+| always | 662 | 1.390 / 1.954 / 4.229 | 324 | 2.883 / 3.715 / 6.798 |
+
+### Over TCP on loopback (fsync=batch)
+| connections | send msg/s | send p50/p95/p99 ms | recv+ack msg/s | recv+ack p50/p95/p99 ms |
+|---|---:|---|---:|---|
+| 1 | 2,967 | 0.298 / 0.454 / 1.617 | 1,396 | 0.648 / 1.020 / 2.146 |
+| 4 | 3,358 | 1.086 / 2.337 / 3.078 | 1,525 | 2.217 / 3.745 / 4.723 |
+
+raw results written to docs\benchmark_run2.json

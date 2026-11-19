@@ -1,0 +1,195 @@
+{
+  "machine": {
+    "python": "3.13.5",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 124 Stepping 0, AuthenticAMD",
+    "logical_cpus": "12"
+  },
+  "messages": {
+    "threads": 20000,
+    "fsync_always": 1000,
+    "network": 3000
+  },
+  "thread_scaling_fsync_batch": [
+    {
+      "threads": 1,
+      "send": {
+        "ops": 20000,
+        "seconds": 0.958,
+        "per_sec": 20887.5,
+        "p50_ms": 0.0233,
+        "p95_ms": 0.0559,
+        "p99_ms": 1.1387
+      },
+      "recv_ack": {
+        "ops": 20000,
+        "seconds": 1.858,
+        "per_sec": 10764.1,
+        "p50_ms": 0.0391,
+        "p95_ms": 0.1136,
+        "p99_ms": 1.2572
+      }
+    },
+    {
+      "threads": 4,
+      "send": {
+        "ops": 20000,
+        "seconds": 1.502,
+        "per_sec": 13316.7,
+        "p50_ms": 0.0481,
+        "p95_ms": 0.5484,
+        "p99_ms": 7.1509
+      },
+      "recv_ack": {
+        "ops": 20000,
+        "seconds": 2.906,
+        "per_sec": 6881.9,
+        "p50_ms": 0.0963,
+        "p95_ms": 1.271,
+        "p99_ms": 14.3375
+      }
+    },
+    {
+      "threads": 16,
+      "send": {
+        "ops": 20000,
+        "seconds": 1.737,
+        "per_sec": 11513.4,
+        "p50_ms": 0.0508,
+        "p95_ms": 1.4442,
+        "p99_ms": 36.4538
+      },
+      "recv_ack": {
+        "ops": 20000,
+        "seconds": 3.063,
+        "per_sec": 6530.5,
+        "p50_ms": 0.0961,
+        "p95_ms": 1.4499,
+        "p99_ms": 75.6539
+      }
+    }
+  ],
+  "fsync_policy_1_thread": [
+    {
+      "threads": 1,
+      "send": {
+        "ops": 20000,
+        "seconds": 0.113,
+        "per_sec": 176377.9,
+        "p50_ms": 0.0048,
+        "p95_ms": 0.0072,
+        "p99_ms": 0.0122
+      },
+      "recv_ack": {
+        "ops": 20000,
+        "seconds": 0.182,
+        "per_sec": 110045.6,
+        "p50_ms": 0.0078,
+        "p95_ms": 0.0121,
+        "p99_ms": 0.0154
+      },
+      "policy": "memory (no log)"
+    },
+    {
+      "threads": 1,
+      "send": {
+        "ops": 20000,
+        "seconds": 0.695,
+        "per_sec": 28782.6,
+        "p50_ms": 0.0304,
+        "p95_ms": 0.0484,
+        "p99_ms": 0.0896
+      },
+      "recv_ack": {
+        "ops": 20000,
+        "seconds": 1.305,
+        "per_sec": 15327.0,
+        "p50_ms": 0.058,
+        "p95_ms": 0.0944,
+        "p99_ms": 0.1648
+      },
+      "policy": "none"
+    },
+    {
+      "threads": 1,
+      "send": {
+        "ops": 20000,
+        "seconds": 1.181,
+        "per_sec": 16930.3,
+        "p50_ms": 0.032,
+        "p95_ms": 0.0785,
+        "p99_ms": 1.2374
+      },
+      "recv_ack": {
+        "ops": 20000,
+        "seconds": 3.62,
+        "per_sec": 5524.1,
+        "p50_ms": 0.0857,
+        "p95_ms": 0.3976,
+        "p99_ms": 1.6852
+      },
+      "policy": "batch"
+    },
+    {
+      "threads": 1,
+      "send": {
+        "ops": 1000,
+        "seconds": 1.51,
+        "per_sec": 662.2,
+        "p50_ms": 1.3902,
+        "p95_ms": 1.9541,
+        "p99_ms": 4.2293
+      },
+      "recv_ack": {
+        "ops": 1000,
+        "seconds": 3.083,
+        "per_sec": 324.4,
+        "p50_ms": 2.8829,
+        "p95_ms": 3.7147,
+        "p99_ms": 6.7985
+      },
+      "policy": "always"
+    }
+  ],
+  "network_fsync_batch": [
+    {
+      "threads": 1,
+      "send": {
+        "ops": 3000,
+        "seconds": 1.011,
+        "per_sec": 2967.3,
+        "p50_ms": 0.2976,
+        "p95_ms": 0.4539,
+        "p99_ms": 1.6172
+      },
+      "recv_ack": {
+        "ops": 3000,
+        "seconds": 2.148,
+        "per_sec": 1396.5,
+        "p50_ms": 0.6481,
+        "p95_ms": 1.0196,
+        "p99_ms": 2.1461
+      }
+    },
+    {
+      "threads": 4,
+      "send": {
+        "ops": 3000,
+        "seconds": 0.893,
+        "per_sec": 3357.8,
+        "p50_ms": 1.0856,
+        "p95_ms": 2.3368,
+        "p99_ms": 3.0779
+      },
+      "recv_ack": {
+        "ops": 3000,
+        "seconds": 1.968,
+        "per_sec": 1524.7,
+        "p50_ms": 2.2166,
+        "p95_ms": 3.7454,
+        "p99_ms": 4.7234
+      }
+    }
+  ]
+}

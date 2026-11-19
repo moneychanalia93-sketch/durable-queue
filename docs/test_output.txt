@@ -1,0 +1,113 @@
+test_a_group_always_lands_on_one_node (tests.test_cluster.ClusterTests.test_a_group_always_lands_on_one_node) ... ok
+test_add_node_moves_about_one_over_n_and_loses_nothing (tests.test_cluster.ClusterTests.test_add_node_moves_about_one_over_n_and_loses_nothing) ... ok
+test_added_node_gets_queue_definitions_including_dlq_dependencies (tests.test_cluster.ClusterTests.test_added_node_gets_queue_definitions_including_dlq_dependencies) ... ok
+test_cannot_remove_last_node_or_add_duplicate (tests.test_cluster.ClusterTests.test_cannot_remove_last_node_or_add_duplicate) ... ok
+test_dead_letter_queue_works_across_nodes (tests.test_cluster.ClusterTests.test_dead_letter_queue_works_across_nodes) ... ok
+test_fifo_order_per_group_survives_rebalancing (tests.test_cluster.ClusterTests.test_fifo_order_per_group_survives_rebalancing) ... ok
+test_handle_of_removed_node_is_invalid (tests.test_cluster.ClusterTests.test_handle_of_removed_node_is_invalid) ... ok
+test_in_flight_messages_become_visible_on_move_and_old_handles_die (tests.test_cluster.ClusterTests.test_in_flight_messages_become_visible_on_move_and_old_handles_die) ... ok
+test_remove_node_drains_it_and_loses_nothing (tests.test_cluster.ClusterTests.test_remove_node_drains_it_and_loses_nothing) ... ok
+test_ungrouped_messages_spread_over_all_nodes_and_are_all_delivered (tests.test_cluster.ClusterTests.test_ungrouped_messages_spread_over_all_nodes_and_are_all_delivered) ... ok
+test_a_fresh_follower_catches_up_from_the_leader (tests.test_cluster.ReplicationTests.test_a_fresh_follower_catches_up_from_the_leader) ... ok
+test_cluster_restarts_from_disk_with_topology_and_data (tests.test_cluster.ReplicationTests.test_cluster_restarts_from_disk_with_topology_and_data) ... ok
+test_failover_loses_no_acknowledged_work_and_keeps_in_flight_handles (tests.test_cluster.ReplicationTests.test_failover_loses_no_acknowledged_work_and_keeps_in_flight_handles) ... ok
+test_follower_state_is_identical_to_leader_state (tests.test_cluster.ReplicationTests.test_follower_state_is_identical_to_leader_state) ... ok
+test_restart_after_failover_picks_the_replica_with_the_most_data (tests.test_cluster.ReplicationTests.test_restart_after_failover_picks_the_replica_with_the_most_data) ... ok
+test_second_failure_after_failover_with_new_follower (tests.test_cluster.ReplicationTests.test_second_failure_after_failover_with_new_follower) ... ok
+test_without_a_follower_a_dead_leader_stays_dead (tests.test_cluster.ReplicationTests.test_without_a_follower_a_dead_leader_stays_dead) ... ok
+test_broker_that_is_down_refuses_work_instead_of_losing_it (tests.test_concurrency.SeededChaosTests.test_broker_that_is_down_refuses_work_instead_of_losing_it) ... ok
+test_no_loss_and_no_double_ack_across_many_seeds (tests.test_concurrency.SeededChaosTests.test_no_loss_and_no_double_ack_across_many_seeds) ... ok
+test_same_seed_gives_the_same_run (tests.test_concurrency.SeededChaosTests.test_same_seed_gives_the_same_run) ... ok
+test_broker_many_producers_and_consumers_with_crashing_workers (tests.test_concurrency.ThreadedStressTests.test_broker_many_producers_and_consumers_with_crashing_workers) ... ok
+test_cluster_with_replication_survives_a_leader_crash_under_load (tests.test_concurrency.ThreadedStressTests.test_cluster_with_replication_survives_a_leader_crash_under_load) ... ok
+test_idempotent_consumer_turns_at_least_once_into_exactly_once_effects (tests.test_concurrency.ThreadedStressTests.test_idempotent_consumer_turns_at_least_once_into_exactly_once_effects) ... ok
+test_a_gap_in_lsns_is_a_recovery_error (tests.test_durability.DurabilityTests.test_a_gap_in_lsns_is_a_recovery_error) ... ok
+test_auto_snapshot_after_n_records (tests.test_durability.DurabilityTests.test_auto_snapshot_after_n_records) ... ok
+test_corrupt_record_in_the_middle_stops_replay_there (tests.test_durability.DurabilityTests.test_corrupt_record_in_the_middle_stops_replay_there) ... ok
+test_corrupt_snapshot_is_refused_not_ignored (tests.test_durability.DurabilityTests.test_corrupt_snapshot_is_refused_not_ignored) ... ok
+test_crash_between_snapshot_and_log_reset_does_not_double_apply (tests.test_durability.DurabilityTests.test_crash_between_snapshot_and_log_reset_does_not_double_apply) ... ok
+test_every_torn_tail_recovers_to_a_state_that_really_existed (tests.test_durability.DurabilityTests.test_every_torn_tail_recovers_to_a_state_that_really_existed)
+Truncate the log at every record boundary and mid-record offset. ... ok
+test_failed_commands_are_not_logged (tests.test_durability.DurabilityTests.test_failed_commands_are_not_logged) ... ok
+test_failed_or_crashed_broker_is_fail_stop (tests.test_durability.DurabilityTests.test_failed_or_crashed_broker_is_fail_stop) ... ok
+test_fsync_policy_changes_fsync_count_not_results (tests.test_durability.DurabilityTests.test_fsync_policy_changes_fsync_count_not_results) ... ok
+test_garbage_appended_after_a_good_log_is_discarded (tests.test_durability.DurabilityTests.test_garbage_appended_after_a_good_log_is_discarded) ... ok
+test_receipt_handle_issued_before_a_crash_still_works_after_recovery (tests.test_durability.DurabilityTests.test_receipt_handle_issued_before_a_crash_still_works_after_recovery) ... ok
+test_reopen_restores_exact_state_including_in_flight_messages (tests.test_durability.DurabilityTests.test_reopen_restores_exact_state_including_in_flight_messages) ... ok
+test_snapshot_compacts_the_log_and_recovery_matches (tests.test_durability.DurabilityTests.test_snapshot_compacts_the_log_and_recovery_matches) ... ok
+test_visibility_timeout_keeps_counting_across_a_restart (tests.test_durability.DurabilityTests.test_visibility_timeout_keeps_counting_across_a_restart) ... ok
+test_dead_lettering_a_head_unblocks_the_group (tests.test_engine.FifoTests.test_dead_lettering_a_head_unblocks_the_group) ... ok
+test_fifo_dedup (tests.test_engine.FifoTests.test_fifo_dedup) ... ok
+test_fifo_requires_a_group (tests.test_engine.FifoTests.test_fifo_requires_a_group) ... ok
+test_group_is_blocked_while_its_head_is_in_flight (tests.test_engine.FifoTests.test_group_is_blocked_while_its_head_is_in_flight) ... ok
+test_groups_are_delivered_in_parallel (tests.test_engine.FifoTests.test_groups_are_delivered_in_parallel) ... ok
+test_order_is_preserved_within_a_group (tests.test_engine.FifoTests.test_order_is_preserved_within_a_group) ... ok
+test_batch_receive_returns_oldest_first_up_to_max (tests.test_engine.QueueTests.test_batch_receive_returns_oldest_first_up_to_max) ... ok
+test_change_visibility_extends_the_hold (tests.test_engine.QueueTests.test_change_visibility_extends_the_hold) ... ok
+test_create_queue_is_idempotent_but_rejects_conflicting_config (tests.test_engine.QueueTests.test_create_queue_is_idempotent_but_rejects_conflicting_config) ... ok
+test_dedup_id_suppresses_duplicates_inside_the_window_only (tests.test_engine.QueueTests.test_dedup_id_suppresses_duplicates_inside_the_window_only) ... ok
+test_delayed_message_is_invisible_until_delay_passes (tests.test_engine.QueueTests.test_delayed_message_is_invisible_until_delay_passes) ... ok
+test_double_ack_is_rejected (tests.test_engine.QueueTests.test_double_ack_is_rejected) ... ok
+test_handle_from_before_dead_lettering_stays_dead_after_redrive (tests.test_engine.QueueTests.test_handle_from_before_dead_lettering_stays_dead_after_redrive) ... ok
+test_malformed_and_unknown_handles_are_rejected (tests.test_engine.QueueTests.test_malformed_and_unknown_handles_are_rejected) ... ok
+test_max_depth_applies_backpressure (tests.test_engine.QueueTests.test_max_depth_applies_backpressure) ... ok
+test_nack_backoff_grows_exponentially_and_stays_under_the_cap (tests.test_engine.QueueTests.test_nack_backoff_grows_exponentially_and_stays_under_the_cap) ... ok
+test_nack_with_explicit_delay_and_dead_handle_after_nack (tests.test_engine.QueueTests.test_nack_with_explicit_delay_and_dead_handle_after_nack) ... ok
+test_poison_message_moves_to_dlq_after_max_receive (tests.test_engine.QueueTests.test_poison_message_moves_to_dlq_after_max_receive) ... ok
+test_queue_default_delay_applies (tests.test_engine.QueueTests.test_queue_default_delay_applies) ... ok
+test_received_message_is_hidden_then_reappears_after_visibility_timeout (tests.test_engine.QueueTests.test_received_message_is_hidden_then_reappears_after_visibility_timeout) ... ok
+test_redrive_returns_dlq_messages_with_fresh_receive_count (tests.test_engine.QueueTests.test_redrive_returns_dlq_messages_with_fresh_receive_count) ... ok
+test_send_receive_ack (tests.test_engine.QueueTests.test_send_receive_ack) ... ok
+test_stale_receipt_handle_cannot_ack_after_redelivery (tests.test_engine.QueueTests.test_stale_receipt_handle_cannot_ack_after_redelivery) ... ok
+test_stats_buckets (tests.test_engine.QueueTests.test_stats_buckets) ... ok
+test_validation_errors (tests.test_engine.QueueTests.test_validation_errors) ... ok
+test_state_survives_snapshot_roundtrip_and_behaves_identically (tests.test_engine.SnapshotStateTests.test_state_survives_snapshot_roundtrip_and_behaves_identically) ... ok
+test_durable_broker_matches_model_even_with_random_restarts (tests.test_model.ModelTests.test_durable_broker_matches_model_even_with_random_restarts) ... ok
+test_in_memory_broker_matches_reference_model_over_many_seeds (tests.test_model.ModelTests.test_in_memory_broker_matches_reference_model_over_many_seeds) ... ok
+test_runner_actually_exercises_dead_lettering_and_redrive (tests.test_model.ModelTests.test_runner_actually_exercises_dead_lettering_and_redrive)
+Guard against a vacuous model test: the random runs must reach the interesting states. ... ok
+test_add_then_remove_restores_the_original_mapping (tests.test_ring.RingTests.test_add_then_remove_restores_the_original_mapping) ... ok
+test_adding_a_node_moves_about_one_over_n_of_keys (tests.test_ring.RingTests.test_adding_a_node_moves_about_one_over_n_of_keys) ... ok
+test_duplicate_add_and_unknown_remove_raise (tests.test_ring.RingTests.test_duplicate_add_and_unknown_remove_raise) ... ok
+test_empty_ring_raises (tests.test_ring.RingTests.test_empty_ring_raises) ... ok
+test_keys_only_move_to_the_new_node_never_between_old_nodes (tests.test_ring.RingTests.test_keys_only_move_to_the_new_node_never_between_old_nodes) ... ok
+test_removing_a_node_moves_only_that_nodes_keys (tests.test_ring.RingTests.test_removing_a_node_moves_only_that_nodes_keys) ... ok
+test_same_key_always_maps_to_same_node (tests.test_ring.RingTests.test_same_key_always_maps_to_same_node) ... ok
+test_virtual_nodes_even_out_the_load (tests.test_ring.RingTests.test_virtual_nodes_even_out_the_load) ... ok
+test_cli_dlq_inspect_and_redrive (tests.test_server.CliTests.test_cli_dlq_inspect_and_redrive) ... ok
+test_cli_reports_errors_with_nonzero_exit (tests.test_server.CliTests.test_cli_reports_errors_with_nonzero_exit) ... ok
+test_cli_reports_unreachable_server (tests.test_server.CliTests.test_cli_reports_unreachable_server) ... ok
+test_send_receive_stats_and_ack_through_the_cli (tests.test_server.CliTests.test_send_receive_stats_and_ack_through_the_cli) ... ok
+test_demo_runs_and_shows_the_guarantees (tests.test_server.DemoTests.test_demo_runs_and_shows_the_guarantees) ... ok
+test_binds_loopback_only_and_refuses_other_hosts (tests.test_server.ServerTests.test_binds_loopback_only_and_refuses_other_hosts) ... ok
+test_full_message_lifecycle_over_the_network (tests.test_server.ServerTests.test_full_message_lifecycle_over_the_network) ... ok
+test_malformed_requests_get_error_responses_and_keep_the_connection (tests.test_server.ServerTests.test_malformed_requests_get_error_responses_and_keep_the_connection) ... ok
+test_many_concurrent_clients_lose_nothing (tests.test_server.ServerTests.test_many_concurrent_clients_lose_nothing) ... ok
+test_oversized_request_is_rejected_and_the_connection_stays_usable (tests.test_server.ServerTests.test_oversized_request_is_rejected_and_the_connection_stays_usable) ... ok
+test_server_errors_arrive_as_the_matching_exception_types (tests.test_server.ServerTests.test_server_errors_arrive_as_the_matching_exception_types) ... ok
+test_topology_and_node_management_over_the_wire (tests.test_server.ServerTests.test_topology_and_node_management_over_the_wire) ... ok
+test_batch_policy_syncs_every_batch_size_records (tests.test_wal.WalTests.test_batch_policy_syncs_every_batch_size_records) ... ok
+test_empty_and_short_files_open_as_empty_logs (tests.test_wal.WalTests.test_empty_and_short_files_open_as_empty_logs) ... ok
+test_every_truncation_point_recovers_a_clean_prefix (tests.test_wal.WalTests.test_every_truncation_point_recovers_a_clean_prefix)
+Cut the file at EVERY byte offset: recovery must return a prefix, never garbage. ... ok
+test_flipped_byte_cuts_log_at_that_record (tests.test_wal.WalTests.test_flipped_byte_cuts_log_at_that_record) ... ok
+test_foreign_file_is_rejected (tests.test_wal.WalTests.test_foreign_file_is_rejected) ... ok
+test_fsync_policies_issue_the_expected_number_of_fsyncs (tests.test_wal.WalTests.test_fsync_policies_issue_the_expected_number_of_fsyncs) ... ok
+test_implausible_length_header_is_treated_as_corruption (tests.test_wal.WalTests.test_implausible_length_header_is_treated_as_corruption) ... ok
+test_open_truncates_torn_tail_and_keeps_appending (tests.test_wal.WalTests.test_open_truncates_torn_tail_and_keeps_appending) ... ok
+test_reset_leaves_an_empty_valid_log (tests.test_wal.WalTests.test_reset_leaves_an_empty_valid_log) ... ok
+test_roundtrip (tests.test_wal.WalTests.test_roundtrip) ... ok
+
+----------------------------------------------------------------------
+Ran 96 tests in 25.092s
+
+OK
+
+  [cluster] add 5th node: moved 839/4000 messages = 0.2097 (ideal 0.2000)
+  [chaos] 25 seeds: 3518 redeliveries, 756 broker crashes, 200 messages dead-lettered (poison), 0 lost
+  [stress] broker: 1000 msgs, 29 duplicate deliveries processed, 29 stale acks refused
+  [ring] 2->3 nodes: moved 0.3290 of keys (ideal 1/(N+1) = 0.3333)
+  [ring] 4->5 nodes: moved 0.1888 of keys (ideal 1/(N+1) = 0.2000)
+  [ring] 8->9 nodes: moved 0.1018 of keys (ideal 1/(N+1) = 0.1111)
+  [ring] 4->3 nodes: moved 0.2345 of keys (ideal 0.2500)
+  [ring] load std dev / mean by vnodes, 8 nodes, 50k keys: 1: 1.207, 16: 0.225, 128: 0.129, 512: 0.036

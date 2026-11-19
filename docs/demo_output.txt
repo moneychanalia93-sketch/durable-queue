@@ -1,0 +1,35 @@
+
+=== 1. At-least-once delivery + an idempotent consumer ===
+sent 60 orders across 3 nodes (replicated, logged to a temporary directory)
+worker crashes simulated   : 11
+messages delivered > once  : 13 extra deliveries (crashed workers + retries of the poison message)
+unique effects applied     : 59 of 60 (the missing one is the poison message; every other order applied exactly once)
+
+=== 2. Poison message -> dead-letter queue -> inspect -> redrive ===
+DLQ holds 1 message(s): order-7 (received 3x, from orders)
+(we 'deploy a fix', then redrive)
+redriven: 1 message(s)
+orders applied now: 60 of 60; DLQ size: 0
+
+=== 3. Receipt handles stop a stale consumer ===
+A and B hold the same message (10435a10), receive_count A=1 B=2
+A's late ack is rejected: receipt handle is stale: message was deleted or redelivered
+B's ack succeeds; message deleted exactly once
+
+=== 4. FIFO groups: order inside a group, parallel across groups ===
+first receive returned 3 messages, one per group: ['alice:0', 'bob:0', 'carol:0']
+per-group order: alice=[0, 1, 2, 3]; bob=[0, 1, 2, 3]; carol=[0, 1, 2, 3]
+
+=== 5. Add a node: only ~1/N of messages move ===
+added n4: moved 494 of 2000 messages (24.7%); ideal 1/4 = 25.0%
+per-node totals: {'n1': 502, 'n2': 514, 'n3': 490, 'n4': 494}
+
+=== 6. Leader failure and failover ===
+killed n2's leader; follower promoted (failovers=1); events before=2000 after=2000
+
+=== 7. Crash recovery from the write-ahead log ===
+reopened 4 nodes from disk; state identical to before shutdown: True
+n1 replayed 747 log record(s) on top of its snapshot/log; torn bytes discarded: 0
+events still queued: 2000
+
+Done. Guarantee shown: at-least-once delivery. Duplicates happened; idempotent handling made the effects exactly-once.

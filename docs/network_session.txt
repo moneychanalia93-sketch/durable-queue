@@ -1,0 +1,120 @@
+# Real session against a running server (3 nodes, 1 follower each, fsync=batch). Captured output, not hand-written.
+
+> python -m dq create orders --max-receive 2 --visibility-timeout 2
+{"created": true}
+
+> python -m dq send orders hello
+{"id": "93b89842de857631c6cea281", "duplicate": false, "node": "n2"}
+
+> python -m dq send orders world --dedup-id k1
+{"id": "9601eb43b22cb1711ef7fe09", "duplicate": false, "node": "n2"}
+
+> python -m dq send orders world --dedup-id k1
+{"id": "9601eb43b22cb1711ef7fe09", "duplicate": true, "node": "n2"}
+
+> python -m dq send orders --group g1 x
+{"id": "81cbdb3ec5316851eb59456a", "duplicate": false, "node": "n1"}
+
+> python -m dq stats orders
+{
+  "queue": "orders",
+  "total": 3,
+  "visible": 3,
+  "in_flight": 0,
+  "delayed": 0,
+  "blocked_by_group": 0,
+  "nodes": {
+    "n1": {
+      "queue": "orders",
+      "total": 1,
+      "visible": 1,
+      "in_flight": 0,
+      "delayed": 0,
+      "blocked_by_group": 0
+    },
+    "n2": {
+      "queue": "orders",
+      "total": 2,
+      "visible": 2,
+      "in_flight": 0,
+      "delayed": 0,
+      "blocked_by_group": 0
+    },
+    "n3": {
+      "queue": "orders",
+      "total": 0,
+      "visible": 0,
+      "in_flight": 0,
+      "delayed": 0,
+      "blocked_by_group": 0
+    }
+  }
+}
+
+> python -m dq receive orders --max 5
+{"id": "81cbdb3ec5316851eb59456a", "body": "x", "group": "g1", "handle": "n1|81cbdb3ec5316851eb59456a.1", "receive_count": 1, "sent_at": 1795038469.3573673}
+{"id": "93b89842de857631c6cea281", "body": "hello", "group": null, "handle": "n2|93b89842de857631c6cea281.1", "receive_count": 1, "sent_at": 1795038468.3630428}
+{"id": "9601eb43b22cb1711ef7fe09", "body": "world", "group": null, "handle": "n2|9601eb43b22cb1711ef7fe09.2", "receive_count": 1, "sent_at": 1795038468.625688}
+
+> python -m dq send nosuchqueue x
+error [queue_not_found]: no such queue: 'nosuchqueue'
+
+> python -m dq receive orders --max 5
+{"id": "93b89842de857631c6cea281", "body": "hello", "group": null, "handle": "n2|93b89842de857631c6cea281.3", "receive_count": 2, "sent_at": 1795038468.3630428}
+{"id": "9601eb43b22cb1711ef7fe09", "body": "world", "group": null, "handle": "n2|9601eb43b22cb1711ef7fe09.4", "receive_count": 2, "sent_at": 1795038468.625688}
+{"id": "81cbdb3ec5316851eb59456a", "body": "x", "group": "g1", "handle": "n1|81cbdb3ec5316851eb59456a.2", "receive_count": 2, "sent_at": 1795038469.3573673}
+
+> python -m dq receive orders --max 5
+
+> python -m dq dlq orders-dlq
+[{"id": "93b89842de857631c6cea281", "body": "hello", "group": null, "handle": null, "receive_count": 2, "sent_at": 1795038468.3630428, "source": "orders", "node": "n2"}, {"id": "9601eb43b22cb1711ef7fe09", "body": "world", "group": null, "handle": null, "receive_count": 2, "sent_at": 1795038468.625688, "source": "orders", "node": "n2"}, {"id": "81cbdb3ec5316851eb59456a", "body": "x", "group": "g1", "handle": null, "receive_count": 2, "sent_at": 1795038469.3573673, "source": "orders", "node": "n1"}]
+
+> python -m dq dlq orders-dlq --redrive
+{"redriven": 3}
+
+> python -m dq receive orders --max 5 --ack
+{"id": "81cbdb3ec5316851eb59456a", "body": "x", "group": "g1", "handle": "n1|81cbdb3ec5316851eb59456a.3", "receive_count": 1, "sent_at": 1795038469.3573673}
+{"id": "93b89842de857631c6cea281", "body": "hello", "group": null, "handle": "n2|93b89842de857631c6cea281.5", "receive_count": 1, "sent_at": 1795038468.3630428}
+{"id": "9601eb43b22cb1711ef7fe09", "body": "world", "group": null, "handle": "n2|9601eb43b22cb1711ef7fe09.6", "receive_count": 1, "sent_at": 1795038468.625688}
+
+> python -m dq stats orders
+{
+  "queue": "orders",
+  "total": 0,
+  "visible": 0,
+  "in_flight": 0,
+  "delayed": 0,
+  "blocked_by_group": 0,
+  "nodes": {
+    "n1": {
+      "queue": "orders",
+      "total": 0,
+      "visible": 0,
+      "in_flight": 0,
+      "delayed": 0,
+      "blocked_by_group": 0
+    },
+    "n2": {
+      "queue": "orders",
+      "total": 0,
+      "visible": 0,
+      "in_flight": 0,
+      "delayed": 0,
+      "blocked_by_group": 0
+    },
+    "n3": {
+      "queue": "orders",
+      "total": 0,
+      "visible": 0,
+      "in_flight": 0,
+      "delayed": 0,
+      "blocked_by_group": 0
+    }
+  }
+}
+
+# --- Python client library ---
+received job-1 receive_count 1
+redelivered receive_count 2
+stale ack -> InvalidReceipt : receipt handle is stale: message was deleted or redelivered
+fresh ack ok; topology: {'vnodes': 128, 'replicas': 1, 'nodes': {'n1': {'lsn': 14, 'followers': 1, 'failovers': 0}, 'n2': {'lsn': 12, 'followers': 1, 'failovers': 0}, 'n3': {'lsn': 3, 'followers': 1, 'failovers': 0}}}
